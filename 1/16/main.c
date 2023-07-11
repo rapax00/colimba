@@ -4,58 +4,41 @@ of the text. */
 
 #include <stdio.h>
 
-#define MAXLINE 1000
+#define MAXLINE 15
 
 int getline(char line[], int maxline);
-void copy(char to[], char from[]);
 
 int main() {
-    int len;
-    int max;
-    char line[MAXLINE];
-    char longest[MAXLINE];
+    int lineLenght;
+    char line[MAXLINE+2];
 
-    max = 0;
-
-    while((len = getline(line, MAXLINE)) > 0) {
-        if (len > max) {
-            max = len;
-            copy(longest, line);
-        }
-    }
-
-    if (max > 0){
-        printf("El largo de la palabra es %d caracteres:\n%s\n", len, longest);
+    while((lineLenght = getline(line, MAXLINE+2)) > 0) {
+        printf("La linea tiene %d caracteres, y lo maximo que se puede impirmir es:\n%s", lineLenght, line);
     }
 
     return 0;
 }
 
 int getline(char s[], int lim){
-    int c, i;
+    int c, i, count = 0;
 
-    for (i = 0; (i<lim-1) && ((c = getchar())!=EOF) && (c!='\n'); ++i) {
-        s[i] = c;
+    for (i = 0; i < lim-1; ++i) { /* limpia el array */
+        s[i] = 0;
     }
-
-    if (c == '\n') {
-        s[i] = c;
-        ++i;
-    }
-
-    s[i] = '\0';
-
-    return i;
-}
-
-void copy(char to[], char from[]) {
-    int i;
 
     i = 0;
 
-    while ((to[i] = from[i]) != '\0') {
-        ++i;
+    while (((c = getchar()) != EOF) && (c != '\n')) {
+        if (i < lim-2) {
+            s[i] = c;
+            ++i;
+        } else if (i < lim-1) {
+            s[i] = '\n';
+            s[++i] = '\0';
+        }
+
+        ++count;
     }
 
-   /* to[i] = '\0';*/
+    return count;
 }
