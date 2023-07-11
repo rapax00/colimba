@@ -8,36 +8,39 @@ line of input, and to delete entirely blank lines.*/
 int getline(char s[], int lim);
 
 int main() {
-    char c[MAXSIZE];
+    int k;
+    char line[MAXSIZE+1]; /* +1 for \0 */
 
-    while (getline(c, MAXSIZE)){
-        printf("El input: %s", c);
+    while ((k = getline(line, MAXSIZE+1)) > 0){
+            printf("%s.", line);
     }
 
     return 0;
 }
 
 int getline(char s[], int lim){
-    int c, i;
+    int c, i = 0, count = 0;
 
-    for (i = 0; (i<lim-1) && ((c = getchar())!=EOF) && (c!='\n'); ++i) {
-        s[i] = c;
+    while (((c = getchar()) != '\n') && c != EOF) {
+        if (i < lim-1) {
+            s[i] = c;
+            ++i;
+        }
+        ++count;
     }
 
-    printf("valor de c %c", c);
+    if (0 < i) {
+        --i;
+        --count;
 
-    --i; /* para posicionarse en el ultimo caracter del input */
-
-    while ((s[i] == ' ') || (s[i] == '\t')) {
+        while ((s[i] == ' ') || (s[i] == '\t')) {
             --i;
+            --count;
+        }
+
+        ++i;
+        s[i] = '\0';
     }
 
-    ++i;
-    s[i] = '}'; /* para ver donde esta el final del input */
-    ++i;
-    s[i] = '\n';
-    ++i;
-    s[i] = '\0';
-
-    return i;
+    return count;
 }
