@@ -3,39 +3,26 @@ characters. */
 
 #include <stdio.h>
 
-#define MAXSIZE 1000
-
-int getline(char s[], int lim);
-
 int main(){
-    char line[MAXSIZE], length;
+    int c, max = 80, count = 0;
+    char line[max+1];
 
-    length = 0;
-
-    while(length = getline(line, MAXSIZE)) {
-        if (length > 80) {
-            printf("El input larguisimo: %s",line);
+    while((c = getchar()) != EOF) {
+        if ('\n' != c){
+            if (count < max){
+                line[count] = c;
+            } else if (count == max) {
+                line[count] = '\0';
+                printf("%s", line);
+                putchar(c);
+            } else {
+                putchar(c);
+            }
+            ++count;
         } else {
-            printf("El input es menor a 80 caracteres\n");
+            count = 0;
         }
     }
 
     return 0;
-}
-
-int getline(char s[], int lim){
-    int c, i;
-
-    for (i = 0; (i<lim-1) && ((c = getchar())!=EOF) && (c!='\n'); ++i) {
-        s[i] = c;
-    }
-
-    if (c == '\n') {
-        s[i] = c;
-        ++i;
-    }
-
-    s[i] = '\0';
-
-    return i;
 }
