@@ -1,36 +1,31 @@
-#include <stdio.h>
-
 /* Exercise 1-14. Write a program to print a histogram of the frequencies of
 diferent characters in its input. */
 
-#define AMOUNT_CHAR 5
+#include <stdio.h>
 
-int main()
-{
-    int c, i;
-    int chars[AMOUNT_CHAR];
-    int frequenci[AMOUNT_CHAR];
+#define MAXCHAR 255 /* amount of chars in ASCII */
 
-    for (i = 0; i < AMOUNT_CHAR; ++i) {
-        while (c = getchar() != EOF) {
-            chars[i] = c;
-        }
+int main() {
+    int c, frequenci[MAXCHAR], i;
+
+    for (i = 0; i < MAXCHAR; ++i) {
+        frequenci[i] = 0;
     }
 
-    i = 0;
-
-    if (chars[i] == c) {
-            frequenci[i];
-    } else {
-            ++i;
+    while ((c = getchar()) != EOF) {
+        ++frequenci[c];
     }
 
-    printf("\n");
-    for (i = 0; i < AMOUNT_CHAR; ++i){
-        while (frequenci[i] > 0) {
+    for (i = 0; i < MAXCHAR; ++i) {
+        printf("%c it read: ", i);
+        while (0 < frequenci[i]) {
             printf("|");
             --frequenci[i];
         }
         printf("\n");
     }
+
+    return 0;
 }
+
+/* Observaion: I assume it print funny char for chars after 128 in ASCII because it dont available in the console */
