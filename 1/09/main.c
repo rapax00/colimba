@@ -1,23 +1,28 @@
-#include <stdio.h>
-
 /* Exercise 1-9. Write a program to copy its input to its output, replacing each
 string of one or more blanks by a single blank. */
 
-int main(){
-    int c, i;
+#include <stdio.h>
 
-    i = 0; /* i cuenta si detecto espacio, 0 para no, 1 para si */
+#define OUT 0
+#define IN 1
+
+int main() {
+    int c, i, old;
+
+    i = IN;
 
     while ((c = getchar()) != EOF) {
-        if (c != ' ') {
+        if (c != ' ' && i == IN) {
             putchar(c);
-            i = 0;
-        } else {
-            if (i == 0) {
-                putchar(c);
-            }
-            i = 1;
+            old = c;
+        } else if (c == ' ') {
+            i = OUT;
+        } else if (c != ' ' && i == OUT) {
+            putchar(' ');
+            putchar(c);
+            i = IN;
         }
+        printf(".");
     }
 
     return 0;
