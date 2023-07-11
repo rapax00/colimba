@@ -6,18 +6,24 @@
 #define OUT 0 /* outside a word */
 
 int main() {
-    int c, state;
-
-    state = OUT;
+    int c, state = OUT;
 
     while ((c = getchar()) != EOF) {
-        if (c == ' ' || c == '\n' || c == '\t') {
-            state = OUT;
-            c = '\n';
-        } else if (state == OUT) {
-            state = IN;
+        if (IN == state) {
+            if (' ' == c || '\n' == c || '\t' == c) {
+                putchar('\n');
+                state = OUT;
+            } else {
+                putchar(c);
+            }
+        } else {
+            if (' ' == c || '\n' == c || '\t' == c) {
+                ;
+            } else {
+                putchar(c);
+                state = IN;
+            }
         }
-        putchar(c);
     }
 
     return 0;
