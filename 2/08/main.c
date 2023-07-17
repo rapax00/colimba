@@ -4,25 +4,24 @@ integer x rotated to the right by n bit positions. */
 #include <stdio.h>
 
 int rightrot(int x, int n) {
-    int aux;
+    int mask;
 
+    mask = (int) ~0 ^ x;                    /* "save" in mask with 1 the values that is 0 in x */
 
-    aux = x;
+    mask = ~mask;                           /* invert mask to "save" the values that rotate */
 
-    aux = aux << n;     /* shift left aux */
-    aux = aux & x;      /* mask aux to width in bits of x */
+    mask = mask << (sizeof(mask) * 8 - n);  /* positioning the values to rotate in the correct site */
 
-    x = x >> n;         /* shift right x */
+    x = x >> n;                             /* delete of x the values to rotate */
 
-    return x | aux;     /* join x and aux */
+    return x ^ mask;                        /* join x (with less values to rotate) with mask (with values to rotate)*/
 }
 
 /* Test */
-
 #define nro 8
 
 int main() {
-    printf("Original %d, rotate %d", nro, rightrot(nro,2));
+    printf("Original %d, rotate %d", nro, rightrot(nro,4));
 
     return 0;
 }
