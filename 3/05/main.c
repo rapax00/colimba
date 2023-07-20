@@ -3,6 +3,7 @@ into a base b character representation in the string s. In particular,
 itob ( n , s , 16 ) formats n as a hexadecimal integer in s. */
 
 #include <stdio.h>
+#include <string.h>
 
 #define MAX 1000
 
@@ -10,10 +11,10 @@ void itob(int n, char s[], int b);
 void reverse(char s[]);
 
 int main() {
-    int number = 50, base = 8;
+    int number = 123, base = 13;
     char str[MAX];
 
-    itob(nro, str, base);
+    itob(number, str, base);
 
     int i;
     for (i = 0; '\0' != str[i]; i++) {
@@ -24,7 +25,7 @@ int main() {
 void itob(int n, char s[], int b) {
     int resto, i = 0;
 
-    if (16 == b) {                              /* dec to hex */
+    if (10 <= b || b <= 16) {                              /* dec to hex */
         do {
             resto = n % b;
             if (resto <= 9) {
@@ -47,23 +48,13 @@ void itob(int n, char s[], int b) {
 }
 
 void reverse(char s[]) {
-    int i, j, k;
+    int c, i, j;
 
-    for (i = 0; '\0' != s[i]; i++) {            /* count lenght of s */
-        ;
+    for (i = 0, j = strlen(s) - 1; i < j; i++, j--) {
+        c = s[i];
+        s[i] = s[j];
+        s[j] = c;
     }
-
-    char aux[i];
-
-    for (j = 0; j < i; j++) {                   /* reverse s in aux */
-        aux[j] = s[i - j - 1];
-    }
-
-    for (k = 0; k < i; k++) {                   /* copy aux to s */
-        s[k] = aux[k];
-    }
-
-    s[k] = '\0';
 }
 
 /* TODO: make converter to base > 9 */
