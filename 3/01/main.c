@@ -5,7 +5,9 @@ test inside the loop and measure the difference in run-time. */
 #include <stdio.h>
 
 #define N 10
-#define NUM_SEARCH 261
+/*#define NUM_SEARCH 169*/
+
+/* 3: 261, 5: 389, 7: 567 */
 
 int binsearch(int x, int v[], int n);
 
@@ -13,37 +15,39 @@ int binsearch(int x, int v[], int n);
 int main() {
     int v[N], i;
 
-    for (i = 0; i < N; ++i) {
-        v[i] = 0 < i ? v[i] = (rand() % 100) + v[i-1] : rand() % 100; /* generate a random number one more big to before */
-        printf("%d ", v[i]);
+    v[0] = rand() % 100;
+    printf("%d", v[0]);
+    for (i = 1; i < N; ++i) {
+        v[i] = (rand() % 100) + v[i - 1]; /* generate a random number one more big to before */
+        printf(" %d", v[i]);
     }
+    printf("\n");
 
-    int pos = binsearch(NUM_SEARCH, v, N);
-    if (-1 != pos) {
-        printf("\nThe number is in the position %d\n", pos);
-    } else {
-        printf("\nThe number isn't in the array");
+    for (i = 0; i < N; ++i) {
+        int pos = binsearch(v[i], v, N);
+        if (-1 != pos) {
+            printf("\nThe number %d is at position %d\n", v[i], pos);
+        } else {
+            printf("\nThe number %d is not in the array", v[i]);
+        }
     }
 
     return 0;
 }
 
 int binsearch(int x, int v[], int n) {
-    int low, i, high, mid;
-    low = i = 0;
-    high = n - 1;
+    int low, high;
+    low = 0;
+    high = n;
 
-    while (low <= high) {
-        mid = (low + high) / 2;
-        if (x <= v[mid]) {
-            high = mid - 1;
-
+    while (low < high - 1) {
+        int mid = (low + high) / 2;
+        if (x < v[mid]) {
+            high = mid;
         } else {
-            low = mid + 1;
-
+            low = mid;
         }
-        ++i;
     }
 
-    return x == v[mid] ? mid : -1;
+    return x == v[low] ? low : -1;
 }
