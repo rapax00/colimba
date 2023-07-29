@@ -2,6 +2,8 @@
 bits that begin at position p set to the rightmost n bits of y, leaving the other
 bits unchanged. */
 
+#include <stdio.h>
+
 int setbits(int x, int p, int n, int y) {
     int aux;
 
@@ -14,11 +16,28 @@ int setbits(int x, int p, int n, int y) {
     return x | yaux;        /* put the bits in x */
 }
 
+void pb(unsigned x) {
+    int size = sizeof(x) * 8;
+
+    char bits[size];
+
+    int i;
+    for (i = 0; i < size; i++) {
+        bits[i] = x & (1u << i) ? '1' : '0';
+    }
+
+    for (i = size; i; i--) {
+        printf("%c", bits[i - 1]);
+    }
+
+    printf("\n");
+}
+
 /* Test*/
-/*
 int main() {
-    printf("%d", setbits(42, 3, 2, 11));
+    int result = setbits(256, 8, 8, 127);
+    printf("%d\n", result);
+    pb(result);
 
     return 0;
 }
-*/
