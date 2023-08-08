@@ -2,8 +2,6 @@
 #include <string.h>
 #include "functions.h"
 
-#define MAXLEN 1000         /* max length of any input line */
-
 /* getline: read a line into s, return length */
 int getline(char s[], int lim){
     int c, i;
@@ -23,19 +21,19 @@ int getline(char s[], int lim){
 }
 
 /* readlines: read input lines */
-int readlines(char *lineptr[], int maxlines) {
+int readlines(char *lineptr[], int maxlines, char *aux) {
     int len, nlines;
-    char *p, line[MAXLEN];
+    char line[MAXLEN];
 
     nlines = 0;
     while ((len = getline(line, MAXLEN)) > 0) {
-        if (maxlines <= nlines || (p = alloc(len)) == NULL) {
+        if (maxlines <= nlines || MAXLEN < len) {
             return -1;
         } else {
             line[len - 1] = '\0';   /* delete newline */
-            strcpy(p, line);
-            lineptr[nlines++] = p;
-            /* aca no iria un afree?*/
+            strcpy(aux, line);
+            lineptr[nlines++] = aux;
+            aux += len;
         }
     }
 
