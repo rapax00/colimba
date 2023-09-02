@@ -1,5 +1,5 @@
-/* Exercise 4-8. Suppose that there will never be more than one character of
-pushback. Modify getch and ungetch accordingly. */
+/* Exercise 4-11. Modify getop so that it doesn't need to use ungetch. Hint:
+use an internal static variable. */
 
 #include <stdio.h>
 #include <stdlib.h>             /* for atof() */
