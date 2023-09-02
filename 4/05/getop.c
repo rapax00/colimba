@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
-#include "calc.h">
+#include "calc.h"
 
 int getop(char s[]) {
     int i, c;
+    int detectCommand(char s[]);
 
     /* Blank jumping */
     while (' ' == (s[0] = c = getch()) || '\t' == c) {
@@ -79,6 +80,8 @@ int detectCommand(char s[]) {
         return EXP;
     } else if (strcmp(s, "pow") == 0) {
         return POW;
+    } else if (strcmp(s, "dup") == 0) {
+        return DUP;
     } else {
         return ERR;
     }

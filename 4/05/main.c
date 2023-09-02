@@ -11,7 +11,7 @@
 /* reverse Polish Calculator */
 int main(void) {
     int type;
-    double op2;
+    double op, op2;
     char s[MAXOP];
 
     while ((type = getop(s)) != EOF) {
@@ -46,18 +46,23 @@ int main(void) {
             }
             break;
         case TOP:
-            double elem = pop();
-            if (0 < elem) {
-                printf("Command action: top element is: %.8g\n", elem);
-                push(elem);
+            op = pop();
+            if(op) {
+                printf("Command action: top element is: %.8g\n", op);
+                push(op);
             }
             break;
         case SWP:
-            double top = pop();
-            double preTop = pop();
-            push(top);
-            push(preTop);
-            printf("Command action: swap succefull. Now top is %.8g, and its predecessor is %.8g\n", preTop, top);
+            op2 = pop();
+            op = pop();
+            push(op2);
+            push(op);
+            printf("Command action: swap succefull. Now top is %.8g, and its predecessor is %.8g\n", op, op2);
+            break;
+        case DUP:
+            op = pop();
+            push(op*2);
+            printf("%.8g duplicated. -> %.8g\n", op, op*2);
             break;
         case CLR:
             while(pop() != 0.0) {
@@ -72,15 +77,15 @@ int main(void) {
             push(exp(pop()));
             break;
         case POW:
-            double y = pop();
-            double x = pop();
-            if (0 == x && y <= 0) {
-                printf("error: zero exp %.8g\n", y);
-            } else if (x < 0) {
-                printf("note: %.8g convert to int. %.8g \n", y, x);
-                push(pow(x, (int)y));   /* NOTE: I don't know why its not result in a negative number */
+            op2 = pop();
+            op = pop();
+            if (0 == op && op2 <= 0) {
+                printf("error: zero exp %.8g\n", op2);
+            } else if (op < 0) {
+                printf("note: %.8g convert to int. -> %d \n", op2, (int)op2);
+                push(pow(op, (int)op2));   /* NOTE: I don't know why its not result in a negative number */
             } else {
-                push(pow(x, y));
+                push(pow(op, op2));
             }
             break;
         case '\n':
