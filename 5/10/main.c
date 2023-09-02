@@ -72,6 +72,9 @@ int main(int argc, char *argv[]) {
                 printf("result: %.8g\n", pop());
             }
             break;
+        case EOP:
+            printf("end of program\n");
+            break;
         case ERR:
         default:
             printf("ERROR invalid input: %s\n", val);

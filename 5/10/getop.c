@@ -7,7 +7,7 @@ int getop(char s[], char arg[]) {
     int i, c;
 
     if (NULL == arg) {      /* end of program */
-        return NULL;
+        return EOP;
     }
 
     /* sign, operator or invalid input manipulation */

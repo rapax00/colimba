@@ -3,7 +3,7 @@
 
 #define MAXVAL 1000
 
-enum {NUMBER = 1, SIN, EXP, POW, ERR};
+enum {NUMBER = 1, SIN, EXP, POW, ERR, EOP};
 
 double pop(void);
 int push(double f);
