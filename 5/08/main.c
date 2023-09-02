@@ -5,10 +5,10 @@ Remedy this defect. */
 #include "functions.h"
 
 #define DAY 12
-#define MONTH 13
+#define MONTH 12
 #define YEAR 2023
 
-#define YEARDAY 400
+#define YEARDAY 300
 
 int main(void) {
     int yd;

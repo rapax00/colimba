@@ -10,7 +10,7 @@ static char daytab[2][13] = {
 int day_of_year(int year, int month, int day) {
     int i, leap;
 
-    leap = (year % 4 == 0) && (year/100 != 0) || (year % 400 == 0);
+    leap = (year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0);
 
     /* error detector */
     if (month <= 0 || 12 < month) {
@@ -34,7 +34,7 @@ int day_of_year(int year, int month, int day) {
 int month_day(int year, int yearday, int *pmonth, int *pday) {
     int i, leap;
 
-    leap = (year % 4 == 0) && (year/100 != 0) || (year % 400 == 0);
+    leap = (year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0);
 
     /* error detector */
     if (0 == leap && 365 < yearday) {
