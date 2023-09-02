@@ -1,5 +1,5 @@
 /* Exercise 5-3. Write a pointer version of the function strcat that we showed
-in Chapter 2: strcat (s, t ) copies the string t to the end of s. */
+in Chapter 2: strcat (s, t) copies the string t to the end of s. */
 
 #include <stdio.h>
 
@@ -9,7 +9,7 @@ int main(void) {
     char a[] = "hola", b[] = " carola";
 
     printf("Strigns before strcat:\na: \"%5s\"\nb: \"%5s\"\n", a, b);
-    strcat(&a, &b);
+    strcat(a, b);
     printf("---\nStrigns after strcat:\na: \"%5s\"\nb: \"%5s\"\n", a, b);
 
     return 0;
