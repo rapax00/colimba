@@ -21,6 +21,6 @@ double pop(void) {
         return val[--sp];
     } else {
         printf("error: stack empty\n");
-        return 0.0;
+        return 0;
     }
 }

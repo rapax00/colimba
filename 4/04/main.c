@@ -11,7 +11,7 @@ clear the stack. */
 /* reverse Polish Calculator */
 int main(void) {
     int type;
-    double op2;
+    double op, op2;
     char s[MAXOP];
 
     while ((type = getop(s)) != EOF) {
@@ -46,18 +46,23 @@ int main(void) {
             }
             break;
         case TOP:
-            double elem = pop();
-            if (0 < elem) {
-                printf("Command action: top element is: %.8g\n", elem);
-                push(elem);
+            op = pop();
+            if(op) {
+                printf("Command action: top element is: %.8g\n", op);
+                push(op);
             }
             break;
         case SWP:
-            double top = pop();
-            double preTop = pop();
-            push(top);
-            push(preTop);
-            printf("Command action: swap succefull. Now top is %.8g, and its predecessor is %.8g\n", preTop, top);
+            op2 = pop();
+            op = pop();
+            push(op2);
+            push(op);
+            printf("Command action: swap succefull. Now top is %.8g, and its predecessor is %.8g\n", op, op2);
+            break;
+        case DUP:
+            op = pop();
+            push(op*2);
+            printf("%.8g duplicated. -> %.8g", op, op*2);
             break;
         case '\n':
             printf("\t%.8g\n", pop());

@@ -3,7 +3,7 @@
 
 #define NUMBER '0'              /* signal that a number was found */
 
-enum {TOP = '1', SWP, CLR, ERR = '10'};
+enum {ERR = '1', TOP, SWP, CLR, DUP};
 
 void push(double);
 double pop(void);

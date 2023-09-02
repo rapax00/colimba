@@ -1,10 +1,13 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
-#include "calc.h">
+#include "calc.h"
+
+
 
 int getop(char s[]) {
     int i, c;
+    int detectCommand(char s[]);
 
     /* Blank jumping */
     while (' ' == (s[0] = c = getch()) || '\t' == c) {
@@ -35,6 +38,10 @@ int getop(char s[]) {
                 ;
             }
             s[i] = '\0';
+
+            if (c != EOF) {
+                ungetch(c);
+            }
 
             return detectCommand(s);                                                            /* detect if the s is a command or invalid input*/
         }
@@ -69,6 +76,8 @@ int detectCommand(char s[]) {
         return SWP;
     } else if (strcmp(s, "clr") == 0) {
         return CLR;
+    } else if (strcmp(s, "dup") == 0) {
+        return DUP;
     } else {
         return ERR;
     }
