@@ -3,20 +3,20 @@
 /* strncpy: copy at most n characters of string t to s; return s.
 Pad with '\0' s if t has fewer than n characters */
 char *strncpy(char s[], char t[], int n) {
-    char *a = s;
-    char *limit = t + n;    /* set limit to copy form t to s */
+    int i;
 
-    while (limit != t) {
+    for(i = 0; i < n; i++) {
         *s++ = *t++;
-        if ('\0' == *t ) {
-            while ('\0' != *s) {
-                *s++ = '\0';
+        if('\0' == *t) {
+            char *a = s;    /* copy address of s in a on this position for manipulate a and return s correctly*/
+            while(*a != '\0') {
+                *a++ = '\0';
             }
-            return a;
+            break;
         }
     }
 
-    return a;
+    return s;
 }
 
 /* strncat: concatenate at most n characters of string t to string

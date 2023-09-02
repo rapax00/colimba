@@ -6,11 +6,11 @@ Full descriptions are in Appendix B. */
 #include <stdio.h>
 
 #define MAX 50
-#define MAGIC_NUMBER 1
+#define MAGIC_NUMBER 4
 
 int main(void) {
     char a[] = "casiron";
-    char b[] = "lo";
+    char b[] = "lolo";
     char *c;
 
     /* strncpy */
