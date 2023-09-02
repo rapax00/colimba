@@ -14,7 +14,7 @@ int main(void) {
     getline(ss, MAX);
     getline(tt, MAX);
 
-    printf("The word 1 is:\n%s\nThe find word is:\n%s\nAnd the position of word 2 in word 1 is:\n%d", ss, tt, strrindex2(ss, tt));
+    printf("The word 1 is:\n%s\nThe find word is:\n%s\nAnd the position of word 2 in word 1 is: %d\n", ss, tt, strrindex2(ss, tt));
 
     return 1;
 }
@@ -25,15 +25,12 @@ int strrindex2(char s[], char t[]) {
     for (lenghtT = 0; '\0' != t[lenghtT]; lenghtT++) {
         ;
     }
-    printf("LenghtT: %d\n", lenghtT);
 
     for (i = 0; '\0' != s[i]; i++) {
         for (j = i, k = 0; '\0' != t[k] && s[j] == t[k]; j++, k++) {
-            printf("s[%d] == %c, t[%d] == %c\n", j, s[j], k, t[k]);
+            ;
         }
-        printf("k: %d\n", k);
-        printf("t[lenghT] %d, t[k]: %d\n", t[lenghtT -1], t[k]);
-        if (t[lenghtT - 1] == t[k] || '\0' == t[k]) {
+        if ('\0' == t[k]) {
             value = i;
         }
     }
@@ -47,9 +44,6 @@ int getline(char s[], int lim) {
 
     i = 0;
     while (--lim > 0 && (c=getchar( )) != EOF && c != '\n') {
-        s[i++] = c;
-    }
-    if (c == '\n') {
         s[i++] = c;
     }
     s[i] = '\0';
