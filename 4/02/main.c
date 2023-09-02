@@ -27,8 +27,8 @@ int main(void) {
 
 /* atof: convert string s to double */
 double atof(char s[]) {
-    double val, power;
-    int i, sign, signSciNot, lengthSciNot, j, stuff;          /* these are probably not the best names but they work */
+    double val, power, stuff;
+    int i, sign, signSciNot, lengthSciNot, j;          /* these are probably not the best names but they work */
 
     for (i = 0; isspace(s[i]); i++) {                   /* skip white space */
         ;
@@ -66,7 +66,7 @@ double atof(char s[]) {
             lengthSciNot = lengthSciNot * 10 + (s[i] - '0');
         }
 
-        for ( j = lengthSciNot, stuff = 1; j > 0; j--){       /* build stuff that is 1 multipli for "length" of scientific notation */
+        for ( j = lengthSciNot, stuff = 1; 0 < j; j--){       /* build stuff that is 1 multiply for "length" of scientific notation */
             stuff *= 10;
         }
 
