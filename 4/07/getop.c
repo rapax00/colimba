@@ -77,6 +77,8 @@ int detectCommand() {
     }
     s[i] = c;
 
+    printf("string: %s\n", s);
+
     if (strcmp(s, "top") == 0) {
         return TOP;
     } else if (strcmp(s, "swp") == 0) {

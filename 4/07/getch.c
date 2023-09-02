@@ -19,9 +19,9 @@ void ungetch(int c) {           /* push character back on input */
 
 /* ungets: push to entire string to stack
 Note: ungets() doesn't need know buf and bufp */
-void ungets(char s[]) {
-    int i;
-    for (i = strlen(s); 0 <= i; i--) {
-        ungetch(s[i]);
+void ungets(char *s) {
+    if(*s++ != '\0') {
+        ungets(s);
     }
+    ungetch(*--s);
 }
