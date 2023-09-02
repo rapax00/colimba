@@ -52,10 +52,10 @@ int main(void) {
             break;
         case '%':
             op2 = pop();
-            if (0.0 != op2) {
+            if (0 != (int)op2) {
                 push((int)pop() % (int)op2);
             } else {
-                printf("error: zero division\n");
+                printf("error: zero modulus\n");
             }
             break;
         case '\n':
